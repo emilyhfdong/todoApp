@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import { Provider } from "react-redux";
+import store from "./store";
+import { connect } from "react-redux";
 import "./App.css"
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-      <p> hi </p>
-
-      </div>
+      <Provider store={store}>
+        <p> hi <p>
+      </Provider>
     );
   }
 }
 
-export default App;
+
+export default connect(
+    null,
+    null
+)(App);
