@@ -1,11 +1,10 @@
 import {
-    SET_NAV,
+    POST_TODO,
 } from "./types";
 
-export const setNav = (selectedForm) => dispatch => {
-    dispatch({
-        type: SET_NAV,
-        payload: selectedForm
-    });
-
+export const postToDo = (todo) => dispatch => {
+  dispatch({
+    type: POST_TODO,
+    payload: todo
+  });
 };
