@@ -18,42 +18,44 @@ class TodoForm extends Component {
   }
   submitForm = (ev) => {
     ev.preventDefault()
-    console.log("hi")
     const newTodo = {
       title: this.state.title,
       description: this.state.description,
       dueDate: this.state.dueDate
     }
     this.props.postToDo(newTodo)
+    this.setState({
+      title: "",
+      description: "",
+      dueDate: "",
+    })
   }
   render() {
     return (
       <div className="todoForm">
-        <form >
-          <input
-            className="titleInput"
-            name="title"
-            placeholder="title"
-            value={this.state.title}
-            onChange={this.handleChange}
-          />
-          <input
-            className="descriptionInput"
-            name="description"
-            placeholder="description"
-            value={this.state.description}
-            onChange={this.handleChange}
-          />
-          <input
-            onFocus={e => (e.currentTarget.type = "date")}
-            onBlur={e => (e.currentTarget.type = "text")}
-            placeholder="due date"
-            type="text"
-            name="dueDate"
-            onChange={this.handleChange}
-          />
-          <button onClick={this.submitForm}>SUBMIT</button>
-        </form>
+        <input
+          className="titleInput"
+          name="title"
+          placeholder="title"
+          value={this.state.title}
+          onChange={this.handleChange}
+        />
+        <input
+          className="descriptionInput"
+          name="description"
+          placeholder="description"
+          value={this.state.description}
+          onChange={this.handleChange}
+        />
+        <input
+          onFocus={e => (e.currentTarget.type = "date")}
+          onBlur={e => (e.currentTarget.type = "text")}
+          placeholder="due date"
+          type="text"
+          name="dueDate"
+          onChange={this.handleChange}
+        />
+        <button onClick={this.submitForm}>SUBMIT</button>
       </div>
     )
   }

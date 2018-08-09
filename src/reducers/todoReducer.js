@@ -1,5 +1,7 @@
 import {
     POST_TODO,
+    EDIT_TODO,
+    DELETE_TODO
 } from "../actions/types";
 
 function generateRandomString() {
@@ -12,7 +14,22 @@ function generateRandomString() {
 }
 
 const initialState = {
-    allTodos: []
+    allTodos: [
+      {
+        title: "make todo list",
+        description: "use react to create it",
+        dueDate: "2018-08-10",
+        status: false,
+        id: generateRandomString()
+      },
+      {
+        title: "style todo list",
+        description: "use react SASS",
+        dueDate: "2018-08-11",
+        status: false,
+        id: generateRandomString()
+      },
+    ]
 };
 
 export default function(state = initialState, action) {
@@ -23,8 +40,22 @@ export default function(state = initialState, action) {
       newTodo.id = generateRandomString()
       return {
         ...state,
-        allTodos: state.allTodos.concat(action.payload)
+        allTodos: state.allTodos.concat(newTodo)
       };
+    case EDIT_TODO:
+      let newTodoList = state.allTodos.filter(todo => todo.id !== action.payload.id)
+      const editedTodo = action.payload
+      editedTodo.status = false
+      editedTodo.id = action.payload.id
+      return {
+        ...state,
+        allTodos: newTodoList.concat(editedTodo)
+      }
+      case DELETE_TODO:
+      return {
+        ...state,
+        allTodos: state.allTodos.filter(todo => todo.id !== action.payload)
+      }
     default:
       return state;
   }
