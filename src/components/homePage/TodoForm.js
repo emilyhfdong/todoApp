@@ -9,8 +9,18 @@ class TodoForm extends Component {
       title: "",
       description: "",
       dueDate: "",
-      isFocused: false
+      isFocused: false,
+      category: "",
+      showCategories: false
     }
+  }
+  showCategories = () => {
+    this.setState({...this.state, showCategories: true})
+  }
+  changeCategory = (ev) => {
+    console.log(ev.target.innerHTML)
+    this.setState({...this.state, category: ev.target.innerHTML, showCategories: false})
+
   }
   handleChange = (ev) => {
     const newState = this.state
@@ -22,17 +32,21 @@ class TodoForm extends Component {
     const newTodo = {
       title: this.state.title,
       description: this.state.description,
-      dueDate: this.state.dueDate
+      dueDate: this.state.dueDate,
+      category: this.state.category
     }
     this.props.postToDo(newTodo)
     this.setState({
       title: "",
       description: "",
       dueDate: "",
-      isFocused: false
+      isFocused: false,
+      category: ""
     })
   }
+
   render() {
+    const allCategories = this.props.categories.map(category => <p key={category} onClick={this.changeCategory}>{category}</p>)
     return (
       <div className="todoForm">
         <input
@@ -63,6 +77,13 @@ class TodoForm extends Component {
               name="dueDate"
               onChange={this.handleChange}
             />
+            <input className={`input categoryInput ${this.state.showCategories && "showCategories"}`}
+              onClick={this.showCategories}
+              value={this.state.category}
+              placeholder="category"
+            />
+            {this.state.showCategories && allCategories}
+
             <button className="submitBtn" onClick={this.submitForm}>create task</button>
           </div>
         }
@@ -71,7 +92,8 @@ class TodoForm extends Component {
   }
 }
 const mapStateToProps = state => ({
-    allTodos: state.todo.allTodos
+    allTodos: state.todo.allTodos,
+    categories: state.todo.categories
 });
 
 

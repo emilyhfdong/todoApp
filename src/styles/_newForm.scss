@@ -9,9 +9,13 @@
     width: 50rem;
     border: none;
     border-bottom: 2px solid $blue;
+    color: gray;
     font-size: 14px;
     outline: none;
     &:focus {
+      border-bottom: 2px solid $pink;
+    }
+    &.showCategories {
       border-bottom: 2px solid $pink;
     }
   }
