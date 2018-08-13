@@ -1,7 +1,8 @@
 import {
     POST_TODO,
     EDIT_TODO,
-    DELETE_TODO
+    DELETE_TODO,
+    COMPLETE_TODO
 } from "../actions/types";
 
 function generateRandomString() {
@@ -43,7 +44,7 @@ export default function(state = initialState, action) {
         allTodos: state.allTodos.concat(newTodo)
       };
     case EDIT_TODO:
-      let newTodoList = state.allTodos.filter(todo => todo.id !== action.payload.id)
+      const newTodoList = state.allTodos.filter(todo => todo.id !== action.payload.id)
       const editedTodo = action.payload
       editedTodo.status = false
       editedTodo.id = action.payload.id
@@ -51,10 +52,18 @@ export default function(state = initialState, action) {
         ...state,
         allTodos: newTodoList.concat(editedTodo)
       }
-      case DELETE_TODO:
+    case DELETE_TODO:
       return {
         ...state,
         allTodos: state.allTodos.filter(todo => todo.id !== action.payload)
+      }
+    case COMPLETE_TODO:
+      const filteredTodoList = state.allTodos.filter(todo => todo.id !== action.payload)
+      let completedTodo = state.allTodos.filter(todo => todo.id === action.payload)[0]
+      completedTodo.status = true
+      return {
+        ...state,
+        allTodos: filteredTodoList.concat(completedTodo)
       }
     default:
       return state;

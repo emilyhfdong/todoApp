@@ -1,7 +1,8 @@
 import {
     POST_TODO,
     EDIT_TODO,
-    DELETE_TODO
+    DELETE_TODO,
+    COMPLETE_TODO
 } from "./types";
 
 export const postToDo = (todo) => dispatch => {
@@ -21,6 +22,13 @@ export const editToDo = (todo) => dispatch => {
 export const deleteToDo = (todoID) => dispatch => {
   dispatch({
     type: DELETE_TODO,
+    payload: todoID
+  });
+};
+
+export const completeToDo = (todoID) => dispatch => {
+  dispatch({
+    type: COMPLETE_TODO,
     payload: todoID
   });
 };

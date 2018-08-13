@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { editToDo, deleteToDo } from "../../actions/todoActions.js";
+import { editToDo, deleteToDo, completeToDo } from "../../actions/todoActions.js";
 
 class TodoItem extends Component {
   constructor(props) {
@@ -18,6 +18,13 @@ class TodoItem extends Component {
   }
   deleteToDo = () => {
     this.props.deleteToDo(this.props.todo.id)
+  }
+  completeToDo = () => {
+    this.props.completeToDo(this.props.todo.id)
+    this.setState({
+      ...this.state,
+      status: this.props.todo.status
+    })
   }
   handleChange = (ev) => {
     const newState = this.state
@@ -41,6 +48,7 @@ class TodoItem extends Component {
   }
 
   render() {
+    console.log("hi")
     return (
       <div className="todoItem">
         {this.state.editMode === false ? (
@@ -51,6 +59,9 @@ class TodoItem extends Component {
             <p>Status: {this.state.status === false ? ("Pending"):("Completed")}</p>
             <button onClick={this.editToDo}>EDIT</button>
             <button onClick={this.deleteToDo}>DELETE</button>
+            {this.state.status === false &&
+              <button onClick={this.completeToDo}>COMPLETE</button>
+            }
           </div>
           ):(
           <div className="editMode">
@@ -87,5 +98,5 @@ class TodoItem extends Component {
 
 export default connect(
     null,
-    { editToDo, deleteToDo },
+    { editToDo, deleteToDo, completeToDo },
 )(TodoItem);
