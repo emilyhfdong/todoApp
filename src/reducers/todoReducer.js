@@ -3,7 +3,8 @@ import {
     EDIT_TODO,
     DELETE_TODO,
     COMPLETE_TODO,
-    CHANGE_SORT_BY
+    CHANGE_SORT_BY,
+    CREATE_CATEGORY
 } from "../actions/types";
 
 function generateRandomString() {
@@ -33,17 +34,20 @@ const initialState = {
         description: "use react to create it",
         dueDate: "2018-08-10",
         status: false,
-        id: generateRandomString()
+        id: generateRandomString(),
+        category: "work"
       },
       {
         title: "style todo list",
         description: "use react SASS",
         dueDate: "2018-08-11",
         status: false,
-        id: generateRandomString()
+        id: generateRandomString(),
+        category: "home"
       },
     ],
-    sortingMethod: "dueDate"
+    sortingMethod: "dueDate",
+    categories: ["work", "home", "school"]
 };
 
 
@@ -86,8 +90,15 @@ export default function(state = initialState, action) {
     case CHANGE_SORT_BY: {
       const sortedArray = sortArray(state.allTodos, action.payload)
       return {
+        ...state,
         allTodos: sortedArray,
         sortingMethod: action.payload
+      }
+    }
+    case CREATE_CATEGORY: {
+      return {
+        ...state,
+        categories: state.categories.concat(action.payload)
       }
     }
     default:
