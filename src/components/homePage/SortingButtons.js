@@ -14,13 +14,13 @@ class SortingButtons extends Component {
           className={`sortingButton ${this.props.currentMethod === "dueDate" ? ("selectedMethod"):("notSelectedMethod")}`}
           data-method="dueDate"
           onClick={this.changeSort}>
-          Due Date
+          sort by due date
         </button>
         <button
           className={`sortingButton ${this.props.currentMethod === "status" ? ("selectedMethod"):("notSelectedMethod")}`}
           data-method="status"
           onClick={this.changeSort}>
-          Status
+          sort by status
         </button>
       </div>
     )

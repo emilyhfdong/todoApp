@@ -31,7 +31,7 @@ class HomePage extends Component {
         <div className="homeContents">
         <h1 className="headerTitle">{date}</h1>
         <TodoForm/>
-       {/* <SortingButtons/>*/}
+        <SortingButtons/>
         <TodoList/>
         </div>
       </div>

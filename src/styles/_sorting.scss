@@ -1,0 +1,27 @@
+.sortingButtons {
+  display: flex;
+  align-items: center;
+  .sortingButton {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 10rem;
+    padding: 0.75rem;
+    border-radius: 120px;
+    background-color: $navy;
+    border: none;
+    font-family: $capsFont;
+    color: white;
+    font-size: 12px;
+    text-transform: uppercase;
+    outline: none;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+    &.selectedMethod {
+      opacity: 1;
+    }
+  }
+}

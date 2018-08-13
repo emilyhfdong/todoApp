@@ -63,7 +63,6 @@
 .todoList {
   display: flex;
   flex-wrap: wrap;
-  padding-top: 2rem;
   justify-content: center; }
   .todoList .todoItem {
     border: 3px solid #343E53;
@@ -154,6 +153,30 @@
     text-transform: uppercase; }
     .todoItem .editMode .submitEdit:hover {
       background-color: #F3C280; }
+
+.sortingButtons {
+  display: flex;
+  align-items: center; }
+  .sortingButtons .sortingButton {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 10rem;
+    padding: 0.75rem;
+    border-radius: 120px;
+    background-color: #343E53;
+    border: none;
+    font-family: "Josefin Sans";
+    color: white;
+    font-size: 12px;
+    text-transform: uppercase;
+    outline: none;
+    opacity: 0.5; }
+    .sortingButtons .sortingButton:hover {
+      opacity: 1; }
+    .sortingButtons .sortingButton.selectedMethod {
+      opacity: 1; }
 
 html {
   font-family: "Nanum Gothic";
