@@ -47,6 +47,22 @@
     text-transform: uppercase; }
     .todoForm .submitBtn:hover {
       background-color: #D96A61; }
+  .todoForm .categoryInput {
+    caret-color: transparent; }
+  .todoForm .categoryContainer .allCategories {
+    z-index: 10; }
+    .todoForm .categoryContainer .allCategories .categoryOption {
+      cursor: pointer;
+      width: 50rem;
+      border-left: 1px solid #D96A61;
+      border-right: 1px solid #D96A61;
+      border-bottom: 1px solid #D96A61;
+      margin: 0px;
+      padding: 1rem;
+      background-color: white;
+      z-index: 100000;
+      color: gray;
+      font-size: 12px; }
 
 .sideBar {
   margin: 0;

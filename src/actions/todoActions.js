@@ -4,7 +4,8 @@ import {
     DELETE_TODO,
     COMPLETE_TODO,
     CHANGE_SORT_BY,
-    CREATE_CATEGORY
+    CREATE_CATEGORY,
+    CHANGE_CATEGORY
 } from "./types";
 
 export const postToDo = (todo) => dispatch => {
@@ -48,4 +49,13 @@ export const createCategory = (category) => dispatch => {
     payload: category
   })
 }
+
+export const changeCategory = (category) => dispatch => {
+  dispatch ({
+    type: CHANGE_CATEGORY,
+    payload: category
+  })
+}
+
+
 

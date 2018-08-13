@@ -4,7 +4,8 @@ import {
     DELETE_TODO,
     COMPLETE_TODO,
     CHANGE_SORT_BY,
-    CREATE_CATEGORY
+    CREATE_CATEGORY,
+    CHANGE_CATEGORY
 } from "../actions/types";
 
 function generateRandomString() {
@@ -46,8 +47,10 @@ const initialState = {
         category: "home"
       },
     ],
+    filteredTodos: [],
     sortingMethod: "dueDate",
-    categories: ["work", "home", "school"]
+    categories: ["work", "home", "school"],
+    currentCategory: ""
 };
 
 
@@ -88,17 +91,30 @@ export default function(state = initialState, action) {
         allTodos: updatedTodos
       }
     case CHANGE_SORT_BY: {
-      const sortedArray = sortArray(state.allTodos, action.payload)
+      const sortedAllArray = sortArray(state.allTodos, action.payload)
+      const sortedFiltered = sortArray(state.filteredTodos, action.payload)
       return {
         ...state,
-        allTodos: sortedArray,
-        sortingMethod: action.payload
+        allTodos: sortedAllArray,
+        sortingMethod: action.payload,
+        filteredTodos: sortedFiltered
       }
     }
     case CREATE_CATEGORY: {
       return {
         ...state,
         categories: state.categories.concat(action.payload)
+      }
+    }
+    case CHANGE_CATEGORY: {
+      let filteredList = state.allTodos.filter(todo => todo.category === action.payload)
+      if (action.payload === "") {
+        filteredList = []
+      }
+      return {
+        ...state,
+        filteredTodos: filteredList,
+        currentCategory: action.payload
       }
     }
     default:

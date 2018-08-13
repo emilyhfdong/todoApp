@@ -12,7 +12,10 @@ class TodoList extends Component {
   }
 
   render() {
-    const allTodos = this.props.allTodos.map(todo => <TodoItem key={todo.id} todo={todo} />)
+    let allTodos = this.props.allTodos.map(todo => <TodoItem key={todo.id} todo={todo} />)
+    if (this.props.currentCategory) {
+      allTodos = this.props.filteredTodos.map(todo => <TodoItem key={todo.id} todo={todo} />)
+    }
     return (
       <div className="todoList">
         {allTodos}
@@ -22,7 +25,9 @@ class TodoList extends Component {
 }
 
 const mapStateToProps = state => ({
-    allTodos: state.todo.allTodos
+    allTodos: state.todo.allTodos,
+    currentCategory: state.todo.currentCategory,
+    filteredTodos: state.todo.filteredTodos
 });
 
 

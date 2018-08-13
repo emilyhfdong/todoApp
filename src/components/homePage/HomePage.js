@@ -29,8 +29,10 @@ class HomePage extends Component {
       <div className="homePage">
         <SideBar/>
         <div className="homeContents">
-        <h1 className="headerTitle">{date}</h1>
-        <TodoForm/>
+        <h1 className="headerTitle">{this.props.currentCategory ? (this.props.currentCategory.toUpperCase()):(date)}</h1>
+        {!this.props.currentCategory &&
+          <TodoForm/>
+        }
         <SortingButtons/>
         <TodoList/>
         </div>
@@ -40,7 +42,12 @@ class HomePage extends Component {
 }
 
 
+const mapStateToProps = state => ({
+    currentCategory: state.todo.currentCategory
+});
+
+
 export default connect(
+    mapStateToProps,
     null,
-    null
 )(HomePage);

@@ -46,7 +46,9 @@ class TodoForm extends Component {
   }
 
   render() {
-    const allCategories = this.props.categories.map(category => <p key={category} onClick={this.changeCategory}>{category}</p>)
+    const allCategories = this.props.categories.map(category => (
+      <p key={category} onClick={this.changeCategory} className="categoryOption">{category}</p>
+    ))
     return (
       <div className="todoForm">
         <input
@@ -82,8 +84,9 @@ class TodoForm extends Component {
               value={this.state.category}
               placeholder="category"
             />
-            {this.state.showCategories && allCategories}
-
+            <div className="categoryContainer">
+            {this.state.showCategories && <div className="allCategories">{allCategories}</div>}
+            </div>
             <button className="submitBtn" onClick={this.submitForm}>create task</button>
           </div>
         }
@@ -93,7 +96,7 @@ class TodoForm extends Component {
 }
 const mapStateToProps = state => ({
     allTodos: state.todo.allTodos,
-    categories: state.todo.categories
+    categories: state.todo.categories,
 });
 
 

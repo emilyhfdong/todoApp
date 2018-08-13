@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createCategory } from "../../actions/todoActions.js";
+import { createCategory, changeCategory } from "../../actions/todoActions.js";
 
 
 class SideBar extends Component {
@@ -29,12 +29,18 @@ class SideBar extends Component {
       newCategory: ev.target.value
     })
   }
+  handleCategoryChange = (ev) => {
+    this.props.changeCategory(ev.target.innerHTML)
+  }
+  showAll = () => {
+    this.props.changeCategory("")
+  }
 
   render() {
-    const allCategories = this.props.categories.map(category => <p className="category">{category}</p>)
+    const allCategories = this.props.categories.map(category => <p onClick={this.handleCategoryChange} className="category">{category}</p>)
     return (
       <div className="sideBar">
-        <p className="allTasks">ALL TASKS</p>
+        <p onClick={this.showAll} className="allTasks">ALL TASKS</p>
         {allCategories}
         {this.state.createMode ? (
           <input onChange={this.handleChange} onKeyDown={this.submitCategory}/>
@@ -55,5 +61,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { createCategory },
+    { createCategory, changeCategory },
 )(SideBar);

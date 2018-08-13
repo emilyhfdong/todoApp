@@ -39,4 +39,28 @@
       background-color: $pink;
     }
   }
+  .categoryInput {
+    caret-color: transparent;
+  }
+  .categoryContainer {
+    // position: relative;
+    .allCategories {
+      // position: absolute;
+      z-index: 10;
+      .categoryOption {
+        cursor: pointer;
+        width: 50rem;
+        border-left: 1px solid $pink;
+        border-right: 1px solid $pink;
+        border-bottom: 1px solid $pink;
+        margin: 0px;
+        padding: 1rem;
+        background-color: white;
+        z-index: 100000;
+        color: gray;
+        font-size: 12px;
+      }
+    }
+
+  }
 }
