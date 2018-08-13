@@ -1,0 +1,16 @@
+.sideBar {
+  margin: 0;
+  width: 20%;
+  position: fixed;
+  height: 100vh;
+  background-color: $blue;
+  padding-left: 1rem;
+  padding-top: 6rem;
+  font-size: 14px;
+  font-family: $capsFont;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}

@@ -1,0 +1,15 @@
+.homePage {
+  .homeContents{
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    padding-left: 20%;
+  }
+  .headerTitle {
+    font-family: $capsFont;
+    font-size: 25px;
+    color: $navy;
+  }
+}

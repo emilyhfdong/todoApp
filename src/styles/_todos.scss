@@ -1,0 +1,41 @@
+.todoList {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  justify-content: center;
+  .todoItem {
+    border: 3px solid $navy;
+    padding: 2rem;
+    padding-top: 0.5rem;
+    text-align: center;
+    margin: 1rem;
+    .title {
+      text-transform: uppercase;
+      font-family: $capsFont;
+      padding-bottom: 0.5rem;
+      position: relative;
+      border-bottom: 2px solid $yellow;
+    }
+    .description {
+      font-style: italic;
+      font-size: 12px;
+    }
+    &:hover {
+      background-color: $navy;
+      color: white;
+      .hoveredContent {
+        visibility: visible;
+      }
+    }
+    .hoveredContent {
+      visibility: hidden;
+    }
+    &.pending {
+      border: 3px solid $pink;
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+
+}

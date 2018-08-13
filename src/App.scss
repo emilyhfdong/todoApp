@@ -1,1 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic|Josefin+Sans');
+
+$myFont: "Nanum Gothic";
+$capsFont: "Josefin Sans";
+
+$blue: #97B4C6;
+$yellow: #F3C280;
+$pink: #D96A61;
+$red: #C74042;
+$navy: #343E53;
+
 @import 'styles/_home.scss';
+@import 'styles/_newForm.scss';
+@import 'styles/_sideBar.scss';
+@import 'styles/_todos.scss';
+
+
+
+html {
+  font-family: $myFont;
+  margin: 0px;
+  padding: 0px;
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
+}

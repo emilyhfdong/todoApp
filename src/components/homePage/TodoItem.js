@@ -49,18 +49,20 @@ class TodoItem extends Component {
 
   render() {
     return (
-      <div className="todoItem">
+      <div className={`todoItem ${this.state.status === false ? ("pending"):("completed")}`}>
         {this.state.editMode === false ? (
           <div className="displayMode">
-            <p>Title: {this.state.title}</p>
-            <p>Description: {this.state.description}</p>
-            <p>Due Date: {this.state.dueDate}</p>
-            <p>Status: {this.state.status === false ? ("Pending"):("Completed")}</p>
-            <button onClick={this.editToDo}>EDIT</button>
-            <button onClick={this.deleteToDo}>DELETE</button>
-            {this.state.status === false &&
-              <button onClick={this.completeToDo}>COMPLETE</button>
-            }
+            <p className="title">{this.state.title}</p>
+            <div className="hoveredContent">
+              <p className="description">{this.state.description}</p>
+              <p className="dueDate">{this.state.dueDate}</p>
+              <p className="status">Status: {this.state.status === false ? ("Pending"):("Completed")}</p>
+              <button onClick={this.editToDo}>EDIT</button>
+              <button onClick={this.deleteToDo}>DELETE</button>
+              {this.state.status === false &&
+                <button onClick={this.completeToDo}>COMPLETE</button>
+              }
+            </div>
           </div>
           ):(
           <div className="editMode">

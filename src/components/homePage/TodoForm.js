@@ -9,6 +9,7 @@ class TodoForm extends Component {
       title: "",
       description: "",
       dueDate: "",
+      isFocused: false
     }
   }
   handleChange = (ev) => {
@@ -28,34 +29,43 @@ class TodoForm extends Component {
       title: "",
       description: "",
       dueDate: "",
+      isFocused: false
     })
   }
   render() {
     return (
       <div className="todoForm">
         <input
-          className="titleInput"
+          className="input titleInput"
           name="title"
-          placeholder="title"
+          placeholder="add another task..."
           value={this.state.title}
           onChange={this.handleChange}
+          onFocus={() => this.setState({...this.state, isFocused: true})}
+          autoComplete= "off"
         />
-        <input
-          className="descriptionInput"
-          name="description"
-          placeholder="description"
-          value={this.state.description}
-          onChange={this.handleChange}
-        />
-        <input
-          onFocus={e => (e.currentTarget.type = "date")}
-          onBlur={e => (e.currentTarget.type = "text")}
-          placeholder="due date"
-          type="text"
-          name="dueDate"
-          onChange={this.handleChange}
-        />
-        <button onClick={this.submitForm}>SUBMIT</button>
+        {this.state.isFocused &&
+          <div className="focusedForm animated fadeIn faster">
+            <input
+              className="input descriptionInput"
+              name="description"
+              placeholder="description"
+              value={this.state.description}
+              onChange={this.handleChange}
+              autoComplete= "off"
+            />
+            <input
+              className="input dueDateInput"
+              onFocus={e => (e.currentTarget.type = "date")}
+              onBlur={e => (e.currentTarget.type = "text")}
+              placeholder="due date"
+              type="text"
+              name="dueDate"
+              onChange={this.handleChange}
+            />
+            <button className="submitBtn" onClick={this.submitForm}>create task</button>
+          </div>
+        }
       </div>
     )
   }
