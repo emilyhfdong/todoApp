@@ -2,7 +2,8 @@ import {
     POST_TODO,
     EDIT_TODO,
     DELETE_TODO,
-    COMPLETE_TODO
+    COMPLETE_TODO,
+    CHANGE_SORT_BY
 } from "../actions/types";
 
 function generateRandomString() {
@@ -12,6 +13,17 @@ function generateRandomString() {
     str += lettersAndNums[Math.floor(Math.random() * (61))];
   }
   return str;
+}
+
+const sortArray = (array, method) => {
+  const compare = (a, b) => {
+    if (a[method] < b[method]) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+  return array.slice(0).sort(compare)
 }
 
 const initialState = {
@@ -30,8 +42,11 @@ const initialState = {
         status: false,
         id: generateRandomString()
       },
-    ]
+    ],
+    sortingMethod: "dueDate"
 };
+
+
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -39,18 +54,20 @@ export default function(state = initialState, action) {
       const newTodo = action.payload
       newTodo.status = false
       newTodo.id = generateRandomString()
+      const newTodos = sortArray(state.allTodos.concat(newTodo), state.sortingMethod)
       return {
         ...state,
-        allTodos: state.allTodos.concat(newTodo)
+        allTodos: newTodos
       };
     case EDIT_TODO:
       const newTodoList = state.allTodos.filter(todo => todo.id !== action.payload.id)
       const editedTodo = action.payload
       editedTodo.status = false
       editedTodo.id = action.payload.id
+      const editedTodos = sortArray(newTodoList.concat(editedTodo), state.sortingMethod)
       return {
         ...state,
-        allTodos: newTodoList.concat(editedTodo)
+        allTodos: editedTodos
       }
     case DELETE_TODO:
       return {
@@ -61,10 +78,18 @@ export default function(state = initialState, action) {
       const filteredTodoList = state.allTodos.filter(todo => todo.id !== action.payload)
       let completedTodo = state.allTodos.filter(todo => todo.id === action.payload)[0]
       completedTodo.status = true
+      const updatedTodos = sortArray(filteredTodoList.concat(completedTodo), state.sortingMethod)
       return {
         ...state,
-        allTodos: filteredTodoList.concat(completedTodo)
+        allTodos: updatedTodos
       }
+    case CHANGE_SORT_BY: {
+      const sortedArray = sortArray(state.allTodos, action.payload)
+      return {
+        allTodos: sortedArray,
+        sortingMethod: action.payload
+      }
+    }
     default:
       return state;
   }

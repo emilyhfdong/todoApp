@@ -2,7 +2,8 @@ import {
     POST_TODO,
     EDIT_TODO,
     DELETE_TODO,
-    COMPLETE_TODO
+    COMPLETE_TODO,
+    CHANGE_SORT_BY
 } from "./types";
 
 export const postToDo = (todo) => dispatch => {
@@ -32,3 +33,10 @@ export const completeToDo = (todoID) => dispatch => {
     payload: todoID
   });
 };
+
+export const changeSortBy = (category) => dispatch => {
+  dispatch ({
+    type: CHANGE_SORT_BY,
+    payload: category
+  })
+}

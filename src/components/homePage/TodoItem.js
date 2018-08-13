@@ -33,14 +33,14 @@ class TodoItem extends Component {
   }
   submitForm = (ev) => {
     ev.preventDefault()
-    const newTodo = {
+    const editedTodo = {
       title: this.state.title,
       description: this.state.description,
       dueDate: this.state.dueDate,
       status: this.state.status,
       id: this.props.todo.id
     }
-    this.props.editToDo(newTodo)
+    this.props.editToDo(editedTodo)
     this.setState({
       ...this.state,
       editMode: false
@@ -48,7 +48,6 @@ class TodoItem extends Component {
   }
 
   render() {
-    console.log("hi")
     return (
       <div className="todoItem">
         {this.state.editMode === false ? (

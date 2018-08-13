@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import TodoForm from "./TodoForm.js";
 import TodoList from "./TodoList.js";
+import SortingButtons from "./SortingButtons.js";
 
 
 class HomePage extends Component {
@@ -10,6 +11,7 @@ class HomePage extends Component {
     return (
       <div className="homePage">
         <TodoForm/>
+        <SortingButtons/>
         <TodoList/>
       </div>
     )

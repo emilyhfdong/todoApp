@@ -9,12 +9,10 @@ class TodoList extends Component {
     } else {
       return 1;
     }
-
   }
 
   render() {
-    const sortedTodos = this.props.allTodos.sort(this.compareDueDate)
-    const allTodos = sortedTodos.map(todo => <TodoItem key={todo.id} todo={todo} />)
+    const allTodos = this.props.allTodos.map(todo => <TodoItem key={todo.id} todo={todo} />)
     return (
       <div className="todoList">
         {allTodos}
