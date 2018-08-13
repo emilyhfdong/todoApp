@@ -1,0 +1,71 @@
+.todoItem {
+  &:hover {
+    .titleInput, .descriptionInput, .dueDateInput {
+      color: white;
+    }
+  }
+  &.completed {
+    .editMode {
+      .submitEdit {
+        background-color: $yellow;
+        &:hover {
+          background-color: $pink;
+        }
+      }
+    }
+  }
+  .editMode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .titleInput {
+      text-transform: uppercase;
+      font-family: $capsFont;
+      padding-bottom: 0.5rem;
+      position: relative;
+      border: none;
+      border-bottom: 2px solid $yellow;
+      background-color: transparent;
+      font-size: 16px;
+      text-align: center;
+      outline: none;
+      margin-top: 1rem;
+      &:focus {
+        border-color: white;
+      }
+    }
+    .descriptionInput, .dueDateInput {
+      margin-top: 1rem;
+      border: none;
+      background-color: transparent;
+      text-align: center;
+      font-size: 12px;
+      outline: none;
+      &:focus {
+        border-bottom: 1px solid white;
+      }
+    }
+    .descriptionInput {
+      font-style: italic;
+    }
+    .dueDateInput {
+      font-size: 15px;
+    }
+    .submitEdit {
+      margin: 1.5rem;
+      width: 6rem;
+      padding: 0.75rem;
+      border-radius: 120px;
+      background-color: $navy;
+      border: none;
+      font-family: $capsFont;
+      color: white;
+      font-size: 12px;
+      text-transform: uppercase;
+      &:hover {
+        background-color: $yellow;
+      }
+    }
+  }
+
+}

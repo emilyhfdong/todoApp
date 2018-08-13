@@ -20,6 +20,19 @@
       font-style: italic;
       font-size: 12px;
     }
+    .todoBtn {
+      background-color: transparent;
+      margin: 2px;
+      padding: 3px;
+      border: none;
+      .fa {
+        color: white;
+        font-size: 30px;
+        &:hover {
+          color: $yellow;
+        }
+      }
+    }
     &:hover {
       background-color: $navy;
       color: white;

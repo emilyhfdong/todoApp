@@ -56,11 +56,11 @@ class TodoItem extends Component {
             <div className="hoveredContent">
               <p className="description">{this.state.description}</p>
               <p className="dueDate">{this.state.dueDate}</p>
-              <p className="status">Status: {this.state.status === false ? ("Pending"):("Completed")}</p>
-              <button onClick={this.editToDo}>EDIT</button>
-              <button onClick={this.deleteToDo}>DELETE</button>
+              <p className="status">{this.state.status === false ? ("Pending"):("Completed")}</p>
+              <button className="todoBtn" onClick={this.editToDo}><i className="fa fa-edit"></i></button>
+              <button className="todoBtn" onClick={this.deleteToDo}><i className="fa fa-trash"></i></button>
               {this.state.status === false &&
-                <button onClick={this.completeToDo}>COMPLETE</button>
+                <button className="todoBtn" onClick={this.completeToDo}><i className="fa fa-check"></i></button>
               }
             </div>
           </div>
@@ -81,14 +81,16 @@ class TodoItem extends Component {
               onChange={this.handleChange}
             />
             <input
+              className="dueDateInput"
               onFocus={e => (e.currentTarget.type = "date")}
               onBlur={e => (e.currentTarget.type = "text")}
+              value={this.state.dueDate}
               placeholder="due date"
               type="text"
               name="dueDate"
               onChange={this.handleChange}
             />
-            <button onClick={this.submitForm}>SUBMIT</button>
+            <button className="submitEdit" onClick={this.submitForm}>SUBMIT</button>
           </div>
           )}
       </div>

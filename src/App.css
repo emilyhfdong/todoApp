@@ -80,6 +80,16 @@
     .todoList .todoItem .description {
       font-style: italic;
       font-size: 12px; }
+    .todoList .todoItem .todoBtn {
+      background-color: transparent;
+      margin: 2px;
+      padding: 3px;
+      border: none; }
+      .todoList .todoItem .todoBtn .fa {
+        color: white;
+        font-size: 30px; }
+        .todoList .todoItem .todoBtn .fa:hover {
+          color: #F3C280; }
     .todoList .todoItem:hover {
       background-color: #343E53;
       color: white; }
@@ -91,6 +101,59 @@
       border: 3px solid #D96A61; }
       .todoList .todoItem.pending:hover {
         background-color: #D96A61; }
+
+.todoItem:hover .titleInput, .todoItem:hover .descriptionInput, .todoItem:hover .dueDateInput {
+  color: white; }
+
+.todoItem.completed .editMode .submitEdit {
+  background-color: #F3C280; }
+  .todoItem.completed .editMode .submitEdit:hover {
+    background-color: #D96A61; }
+
+.todoItem .editMode {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .todoItem .editMode .titleInput {
+    text-transform: uppercase;
+    font-family: "Josefin Sans";
+    padding-bottom: 0.5rem;
+    position: relative;
+    border: none;
+    border-bottom: 2px solid #F3C280;
+    background-color: transparent;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    margin-top: 1rem; }
+    .todoItem .editMode .titleInput:focus {
+      border-color: white; }
+  .todoItem .editMode .descriptionInput, .todoItem .editMode .dueDateInput {
+    margin-top: 1rem;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    font-size: 12px;
+    outline: none; }
+    .todoItem .editMode .descriptionInput:focus, .todoItem .editMode .dueDateInput:focus {
+      border-bottom: 1px solid white; }
+  .todoItem .editMode .descriptionInput {
+    font-style: italic; }
+  .todoItem .editMode .dueDateInput {
+    font-size: 15px; }
+  .todoItem .editMode .submitEdit {
+    margin: 1.5rem;
+    width: 6rem;
+    padding: 0.75rem;
+    border-radius: 120px;
+    background-color: #343E53;
+    border: none;
+    font-family: "Josefin Sans";
+    color: white;
+    font-size: 12px;
+    text-transform: uppercase; }
+    .todoItem .editMode .submitEdit:hover {
+      background-color: #F3C280; }
 
 html {
   font-family: "Nanum Gothic";
