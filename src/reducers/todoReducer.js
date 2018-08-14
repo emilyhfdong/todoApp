@@ -6,16 +6,18 @@ import {
     CHANGE_SORT_BY,
     CREATE_CATEGORY,
     CHANGE_CATEGORY,
-    CHANGE_SUBTASK_STATUS
+    CHANGE_SUBTASK_STATUS,
+    CREATE_SUBTASK
 } from "../actions/types";
 
 function generateRandomString() {
-  const lettersAndNums = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
-  var str = "";
-  for (let i = 0; i < 6; i ++ ) {
-    str += lettersAndNums[Math.floor(Math.random() * (61))];
-  }
-  return str;
+  // const lettersAndNums = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+  // var str = "";
+  // for (let i = 0; i < 6; i ++ ) {
+  //   str += lettersAndNums[Math.floor(Math.random() * (61))];
+  // }
+  // return str;
+  return Date.now().toString()
 }
 
 const sortArray = (array, method) => {
@@ -36,11 +38,11 @@ const initialState = {
         description: "use react to create it",
         dueDate: "2018-08-10",
         status: false,
-        id: generateRandomString(),
+        id: "1534274840064",
         category: "work",
         subtasks: [
-          {id: generateRandomString(), task: "make repo", status: false},
-          {id: generateRandomString(), task: "create-react-app", status: false}
+          {id: "1534274978313", task: "make repo", status: false},
+          {id: "1534274991595", task: "create-react-app", status: false}
         ]
       },
       {
@@ -48,11 +50,11 @@ const initialState = {
         description: "use react SASS",
         dueDate: "2018-08-11",
         status: false,
-        id: generateRandomString(),
+        id: "1534274963397",
         category: "home",
         subtasks: [
-          {id: generateRandomString(), task: "look for inspo", status: false},
-          {id: generateRandomString(), task: "plan ux", status: false}
+          {id: "1534275000147", task: "look for inspo", status: false},
+          {id: "1534275010352", task: "plan ux", status: false}
         ]
       },
     ],
@@ -146,6 +148,19 @@ export default function(state = initialState, action) {
       return {
         ...state,
         allTodos: updatedList
+      }
+    }
+    case CREATE_SUBTASK: {
+      let taskList = state.allTodos.filter(todo => todo.id !== action.payload.todoId)
+      const parentTodo = state.allTodos.filter(todo => todo.id === action.payload.todoId)[0]
+      const newSubtask = {id: generateRandomString(), task: action.payload.subtask, status: false}
+      const newSubtasklist = sortArray(parentTodo.subtasks.concat(newSubtask), "id")
+
+      parentTodo.subtasks = newSubtasklist
+      taskList = sortArray(taskList.concat(parentTodo), state.sortingMethod)
+      return {
+        ...state,
+        // allTodos: taskList
       }
     }
     default:

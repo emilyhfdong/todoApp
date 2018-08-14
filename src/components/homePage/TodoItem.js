@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { editToDo, deleteToDo, completeToDo } from "../../actions/todoActions.js";
+import { editToDo, deleteToDo, completeToDo, createSubtask } from "../../actions/todoActions.js";
 import SubTaskMode from "./SubTaskMode.js"
 
 
@@ -10,6 +10,7 @@ class TodoItem extends Component {
     this.state = {
       editMode: false,
       subTaskMode: false,
+      addSubtaskMode: false,
       title: this.props.todo.title,
       description: this.props.todo.description,
       dueDate: this.props.todo.dueDate,
@@ -57,7 +58,21 @@ class TodoItem extends Component {
   }
   hideSubTasks = (ev) => {
     ev.stopPropagation()
-    this.setState({...this.state, subTaskMode: false})
+    this.setState({...this.state, subTaskMode: false, addSubtaskMode: false})
+  }
+  addSubtask = (ev) => {
+    ev.stopPropagation()
+    this.setState({...this.state, addSubtaskMode: true})
+  }
+  createSubtask = (ev) => {
+    if(ev.keyCode === 13) {
+      const functionParams = {
+        todoId: this.props.todo.id,
+        subtask: ev.target.value
+      }
+      this.props.createSubtask(functionParams)
+      this.setState({...this.state, addSubtaskMode: false})
+    }
   }
 
   render() {
@@ -65,14 +80,20 @@ class TodoItem extends Component {
       <div className={`todoItem ${this.state.status === false ? ("pending"):("completed")}`}>
         {this.state.editMode === false ? (
           <div onClick={this.showSubTasks} className="displayMode">
-            <div className="titleAndStatus">
-              {this.state.status === false ? (
-                <button className="completeBtn" onClick={this.completeToDo}><i className="fa fa-square-o"></i></button>
-              ):(
-                <button className="completeBtn" onClick={this.completeToDo}><i className="fa fa-check-square-o"></i></button>
-              )}
-              <p className="title">{this.state.title}</p>
-            </div>
+            {this.state.subTaskMode === false ? (
+              <div className="titleAndStatus">
+                {this.state.status === false ? (
+                  <button className="completeBtn" onClick={this.completeToDo}><i className="fa fa-square-o"></i></button>
+                ):(
+                  <button className="completeBtn" onClick={this.completeToDo}><i className="fa fa-check-square-o"></i></button>
+                )}
+                <p className="title">{this.state.title}</p>
+              </div>
+            ):(
+              <div className="titleAndStatus">
+                <p className="title">{this.state.title}</p>
+              </div>
+            )}
             {this.state.subTaskMode === false ? (
               <div className="hoveredContent">
                 <p className="description">{this.state.description}</p>
@@ -84,6 +105,11 @@ class TodoItem extends Component {
             ):(
               <div className="subTaskContents">
                 <SubTaskMode todoId={this.props.todo.id} subtasks={this.props.todo.subtasks}/>
+                {this.state.addSubtaskMode ? (
+                  <input onKeyDown={this.createSubtask} placeholder="new subtask..." className="subtaskInput"/>
+                ):(
+                  <p onClick={this.addSubtask} className="addSubtask"><i className="fa fa-plus"></i></p>
+                )}
                 <p onClick={this.hideSubTasks}><i className="fa fa-angle-double-left"></i></p>
               </div>
             )}
@@ -125,5 +151,5 @@ class TodoItem extends Component {
 
 export default connect(
     null,
-    { editToDo, deleteToDo, completeToDo },
+    { editToDo, deleteToDo, completeToDo, createSubtask },
 )(TodoItem);
