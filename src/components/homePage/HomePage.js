@@ -26,7 +26,7 @@ class HomePage extends Component {
       <div className="homePage">
         <SideBar/>
         <div className="homeContents">
-        <h1 className="headerTitle">{this.props.currentCategory ? (this.props.currentCategory.toUpperCase()):(date)}</h1>
+        <h1 className="headerTitle">{this.props.currentCategory ? (this.props.currentCategory.toUpperCase() + " TASKS"):(date)}</h1>
         {!this.props.currentCategory &&
           <TodoForm/>
         }
