@@ -14,7 +14,8 @@ class TodoItem extends Component {
       title: this.props.todo.title,
       description: this.props.todo.description,
       dueDate: this.props.todo.dueDate,
-      status: this.props.todo.status
+      status: this.props.todo.status,
+      category: this.props.todo.category
     }
   }
   editToDo = (ev) => {
@@ -45,7 +46,8 @@ class TodoItem extends Component {
       description: this.state.description,
       dueDate: this.state.dueDate,
       status: this.state.status,
-      id: this.props.todo.id
+      id: this.props.todo.id,
+      category: this.state.category
     }
     this.props.editToDo(editedTodo)
     this.setState({
@@ -97,6 +99,7 @@ class TodoItem extends Component {
             {this.state.subTaskMode === false ? (
               <div className="hoveredContent">
                 <p className="description">{this.state.description}</p>
+                <p className="category">category: {this.state.category}</p>
                 <p className="dueDate">{this.state.dueDate}</p>
                 <p className="status">{this.state.status === false ? ("Pending"):("Completed")}</p>
                 <button className="todoBtn" onClick={this.editToDo}><i className="fa fa-edit"></i></button>
