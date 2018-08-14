@@ -5,7 +5,8 @@ import {
     COMPLETE_TODO,
     CHANGE_SORT_BY,
     CREATE_CATEGORY,
-    CHANGE_CATEGORY
+    CHANGE_CATEGORY,
+    CHANGE_SUBTASK_STATUS,
 } from "./types";
 
 export const postToDo = (todo) => dispatch => {
@@ -54,6 +55,12 @@ export const changeCategory = (category) => dispatch => {
   dispatch ({
     type: CHANGE_CATEGORY,
     payload: category
+  })
+}
+export const changeSubTaskStatus = (obj) => dispatch => {
+  dispatch ({
+    type: CHANGE_SUBTASK_STATUS,
+    payload: obj
   })
 }
 

@@ -8,12 +8,28 @@
     padding-top: 0.5rem;
     text-align: center;
     margin: 1rem;
-    .title {
-      text-transform: uppercase;
-      font-family: $capsFont;
-      padding-bottom: 0.5rem;
-      position: relative;
+    .titleAndStatus {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       border-bottom: 2px solid $yellow;
+      .title {
+        text-transform: uppercase;
+        font-family: $capsFont;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0px;
+        position: relative;
+      }
+      .completeBtn {
+        padding-top: 5px;
+        padding-bottom: 0px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        &:hover {
+          color: $yellow;
+        }
+      }
     }
     .description {
       font-style: italic;
@@ -37,6 +53,9 @@
       color: white;
       .hoveredContent {
         visibility: visible;
+      }
+      .completeBtn {
+        color: white;
       }
     }
     .hoveredContent {

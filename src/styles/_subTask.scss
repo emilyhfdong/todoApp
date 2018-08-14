@@ -1,0 +1,29 @@
+.todoItem {
+  .fa {
+    font-size: 30px;
+  }
+  .subTaskContents {
+    .subtask {
+      display: flex;
+      align-items: center;
+      padding: 0.25rem;
+      p {
+        margin: 0px;
+      }
+      .fa {
+        color: black;
+        font-size: 20px;
+        margin-right: 0.5rem;
+        padding: 0px;
+        &:hover {
+          color: $yellow;
+        }
+      }
+    }
+  }
+  &:hover {
+    .subTaskContents .subtask .fa{
+      color: white;
+    }
+  }
+}

@@ -5,7 +5,8 @@ import {
     COMPLETE_TODO,
     CHANGE_SORT_BY,
     CREATE_CATEGORY,
-    CHANGE_CATEGORY
+    CHANGE_CATEGORY,
+    CHANGE_SUBTASK_STATUS
 } from "../actions/types";
 
 function generateRandomString() {
@@ -36,7 +37,11 @@ const initialState = {
         dueDate: "2018-08-10",
         status: false,
         id: generateRandomString(),
-        category: "work"
+        category: "work",
+        subtasks: [
+          {id: generateRandomString(), task: "make repo", status: false},
+          {id: generateRandomString(), task: "create-react-app", status: false}
+        ]
       },
       {
         title: "style todo list",
@@ -44,7 +49,11 @@ const initialState = {
         dueDate: "2018-08-11",
         status: false,
         id: generateRandomString(),
-        category: "home"
+        category: "home",
+        subtasks: [
+          {id: generateRandomString(), task: "look for inspo", status: false},
+          {id: generateRandomString(), task: "plan ux", status: false}
+        ]
       },
     ],
     filteredTodos: [],
@@ -61,6 +70,7 @@ export default function(state = initialState, action) {
       const newTodo = action.payload
       newTodo.status = false
       newTodo.id = generateRandomString()
+      newTodo.subtasks = []
       const newTodos = sortArray(state.allTodos.concat(newTodo), state.sortingMethod)
       return {
         ...state,
@@ -84,7 +94,11 @@ export default function(state = initialState, action) {
     case COMPLETE_TODO:
       const filteredTodoList = state.allTodos.filter(todo => todo.id !== action.payload)
       let completedTodo = state.allTodos.filter(todo => todo.id === action.payload)[0]
-      completedTodo.status = true
+      if (completedTodo.status === false) {
+        completedTodo.status = true
+      } else {
+        completedTodo.status = false
+      }
       const updatedTodos = sortArray(filteredTodoList.concat(completedTodo), state.sortingMethod)
       return {
         ...state,
@@ -115,6 +129,23 @@ export default function(state = initialState, action) {
         ...state,
         filteredTodos: filteredList,
         currentCategory: action.payload
+      }
+    }
+    case CHANGE_SUBTASK_STATUS: {
+      const newTaskList = state.allTodos.filter(todo => todo.id !== action.payload.todoId)
+      const selectedTodo = state.allTodos.filter(todo => todo.id === action.payload.todoId)[0]
+
+      const newSubtasks = selectedTodo.subtasks.filter(subtask => subtask.id !== action.payload.subtaskId)
+      const updatedSubtask = selectedTodo.subtasks.filter(subtask => subtask.id === action.payload.subtaskId)[0]
+
+      updatedSubtask.status = action.payload.status
+      selectedTodo.subtasks = sortArray(newSubtasks.concat(updatedSubtask), "id")
+
+
+      const updatedList = sortArray(newTaskList.concat(selectedTodo), state.sortingMethod)
+      return {
+        ...state,
+        allTodos: updatedList
       }
     }
     default:

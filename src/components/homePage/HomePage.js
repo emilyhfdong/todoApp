@@ -19,9 +19,6 @@ class HomePage extends Component {
     let todayStr = today.join(" ");
     return todayStr
   }
-  componentDidMount () {
-    console.log(this.getDate())
-  }
 
   render() {
     const date = this.getDate()

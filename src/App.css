@@ -92,12 +92,25 @@
     padding-top: 0.5rem;
     text-align: center;
     margin: 1rem; }
-    .todoList .todoItem .title {
-      text-transform: uppercase;
-      font-family: "Josefin Sans";
-      padding-bottom: 0.5rem;
-      position: relative;
+    .todoList .todoItem .titleAndStatus {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       border-bottom: 2px solid #F3C280; }
+      .todoList .todoItem .titleAndStatus .title {
+        text-transform: uppercase;
+        font-family: "Josefin Sans";
+        padding-bottom: 0.5rem;
+        margin-bottom: 0px;
+        position: relative; }
+      .todoList .todoItem .titleAndStatus .completeBtn {
+        padding-top: 5px;
+        padding-bottom: 0px;
+        border: none;
+        outline: none;
+        background-color: transparent; }
+        .todoList .todoItem .titleAndStatus .completeBtn:hover {
+          color: #F3C280; }
     .todoList .todoItem .description {
       font-style: italic;
       font-size: 12px; }
@@ -116,6 +129,8 @@
       color: white; }
       .todoList .todoItem:hover .hoveredContent {
         visibility: visible; }
+      .todoList .todoItem:hover .completeBtn {
+        color: white; }
     .todoList .todoItem .hoveredContent {
       visibility: hidden; }
     .todoList .todoItem.pending {
@@ -199,6 +214,26 @@
       opacity: 1; }
     .sortingButtons .sortingButton.selectedMethod {
       opacity: 1; }
+
+.todoItem .fa {
+  font-size: 30px; }
+
+.todoItem .subTaskContents .subtask {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem; }
+  .todoItem .subTaskContents .subtask p {
+    margin: 0px; }
+  .todoItem .subTaskContents .subtask .fa {
+    color: black;
+    font-size: 20px;
+    margin-right: 0.5rem;
+    padding: 0px; }
+    .todoItem .subTaskContents .subtask .fa:hover {
+      color: #F3C280; }
+
+.todoItem:hover .subTaskContents .subtask .fa {
+  color: white; }
 
 html {
   font-family: "Nanum Gothic";

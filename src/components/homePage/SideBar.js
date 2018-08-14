@@ -37,7 +37,7 @@ class SideBar extends Component {
   }
 
   render() {
-    const allCategories = this.props.categories.map(category => <p onClick={this.handleCategoryChange} className="category">{category}</p>)
+    const allCategories = this.props.categories.map(category => <p key={category} onClick={this.handleCategoryChange} className="category">{category}</p>)
     return (
       <div className="sideBar">
         <p onClick={this.showAll} className="allTasks">ALL TASKS</p>
