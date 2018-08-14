@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createCategory, changeCategory } from "../../actions/todoActions.js";
+import { createCategory, changeCategory, deleteCategory } from "../../actions/todoActions.js";
 
 
 class SideBar extends Component {
@@ -35,15 +35,24 @@ class SideBar extends Component {
   showAll = () => {
     this.props.changeCategory("")
   }
+  deleteCategory = (ev) => {
+    this.props.deleteCategory(ev.target.dataset.category)
+
+  }
 
   render() {
-    const allCategories = this.props.categories.map(category => <p key={category} onClick={this.handleCategoryChange} className="category">{category}</p>)
+    const allCategories = this.props.categories.map(category => (
+      <div key={category} className="categoryDiv">
+        <i onClick={this.deleteCategory} data-category={category} className="fa fa-trash"></i>
+        <p onClick={this.handleCategoryChange} className="category">{category}</p>
+      </div>
+    ))
     return (
       <div className="sideBar">
         <p onClick={this.showAll} className="allTasks">ALL TASKS</p>
         {allCategories}
         {this.state.createMode ? (
-          <input onChange={this.handleChange} onKeyDown={this.submitCategory}/>
+          <input placeholder="new category..." className="categoryInput" onChange={this.handleChange} onKeyDown={this.submitCategory}/>
           ):(
           <p onClick={this.newCategory} className="newCategoryBtn"><i className="fa fa-plus"></i></p>
         )}
@@ -61,5 +70,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { createCategory, changeCategory },
+    { createCategory, changeCategory, deleteCategory },
 )(SideBar);

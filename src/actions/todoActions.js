@@ -6,6 +6,7 @@ import {
     CHANGE_SORT_BY,
     CREATE_CATEGORY,
     CHANGE_CATEGORY,
+    DELETE_CATEGORY,
     CHANGE_SUBTASK_STATUS,
     CREATE_SUBTASK,
     DELETE_SUBTASK
@@ -59,6 +60,12 @@ export const changeCategory = (category) => dispatch => {
     payload: category
   })
 }
+export const deleteCategory = (category) => dispatch => {
+  dispatch ({
+    type: DELETE_CATEGORY,
+    payload: category
+  })
+}
 export const changeSubTaskStatus = (obj) => dispatch => {
   dispatch ({
     type: CHANGE_SUBTASK_STATUS,
@@ -79,6 +86,8 @@ export const deleteSubtask = (obj) => dispatch => {
     payload: obj
   })
 }
+
+
 
 
 

@@ -16,5 +16,42 @@
     text-transform: uppercase;
     cursor: pointer;
   }
+  .categoryInput {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    caret-color: white;
+    text-align: center;
+    font-size: 14px;
+    font-family: $capsFont;
+    padding-top: 1rem;
+    color: white;
+    text-transform: uppercase;
+    &::placeholder {
+      color: white;
+      opacity: 0.5;
+    }
+  }
+  .categoryDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &:hover {
+      .fa-trash {
+        display: inline-block;
+      }
+    }
+    .fa-trash {
+      cursor: pointer;
+      display: none;
+      margin-right: 0.5rem;
+      padding-bottom: 0.2rem;
+      &:hover {
+        color: $pink;
+      }
+    }
+
+  }
 
 }

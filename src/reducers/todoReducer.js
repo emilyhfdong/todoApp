@@ -6,6 +6,7 @@ import {
     CHANGE_SORT_BY,
     CREATE_CATEGORY,
     CHANGE_CATEGORY,
+    DELETE_CATEGORY,
     CHANGE_SUBTASK_STATUS,
     CREATE_SUBTASK,
     DELETE_SUBTASK
@@ -130,6 +131,20 @@ export default function(state = initialState, action) {
         ...state,
         filteredTodos: filteredTaskList,
         currentCategory: action.payload
+      }
+    }
+    case DELETE_CATEGORY: {
+      let updatedCategoryList = state.categories.filter(category => category !== action.payload)
+      let currentCategory = state.currentCategory
+      if (currentCategory === action.payload) {
+        currentCategory = ""
+      }
+      let filteredTaskList = state.allTodos.filter(todo => todo.category !== action.payload)
+      return {
+        ...state,
+        categories: updatedCategoryList,
+        currentCategory: currentCategory,
+        allTodos: filteredTaskList
       }
     }
     case CHANGE_SUBTASK_STATUS: {
