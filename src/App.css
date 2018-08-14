@@ -216,44 +216,45 @@
       opacity: 1; }
 
 .todoItem .fa {
+  cursor: pointer;
   font-size: 30px; }
 
-.todoItem .subTaskContents .subtask {
-  display: flex;
-  align-items: center;
-  padding: 0.25rem; }
-  .todoItem .subTaskContents .subtask p {
-    margin: 0px; }
-  .todoItem .subTaskContents .subtask .fa {
-    cursor: pointer;
-    color: black;
-    font-size: 20px;
-    margin-right: 0.5rem;
-    padding: 0px; }
-    .todoItem .subTaskContents .subtask .fa:hover {
-      color: #F3C280; }
-
-.todoItem .subTaskContents .addSubtask {
+.todoItem .subTaskContents {
   margin-top: 1rem; }
-  .todoItem .subTaskContents .addSubtask .fa-plus {
-    cursor: pointer;
-    font-size: 20px; }
-    .todoItem .subTaskContents .addSubtask .fa-plus:hover {
-      color: #F3C280; }
-
-.todoItem .subTaskContents .subtaskInput {
-  margin-top: 1rem;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  border-bottom: 2px solid white;
-  caret-color: white;
-  color: white;
-  font-size: 16px;
-  text-align: center; }
-  .todoItem .subTaskContents .subtaskInput::placeholder {
+  .todoItem .subTaskContents .subtask {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem; }
+    .todoItem .subTaskContents .subtask p {
+      margin: 0px; }
+    .todoItem .subTaskContents .subtask .fa {
+      cursor: pointer;
+      color: black;
+      font-size: 20px;
+      margin-right: 0.5rem;
+      padding: 0px; }
+      .todoItem .subTaskContents .subtask .fa:hover {
+        color: #F3C280; }
+  .todoItem .subTaskContents .addSubtask {
+    margin-top: 1rem; }
+    .todoItem .subTaskContents .addSubtask .fa-plus {
+      cursor: pointer;
+      font-size: 20px; }
+      .todoItem .subTaskContents .addSubtask .fa-plus:hover {
+        color: #F3C280; }
+  .todoItem .subTaskContents .subtaskInput {
+    margin-top: 1rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 2px solid white;
+    caret-color: white;
     color: white;
-    opacity: 0.5; }
+    font-size: 16px;
+    text-align: center; }
+    .todoItem .subTaskContents .subtaskInput::placeholder {
+      color: white;
+      opacity: 0.5; }
 
 .todoItem:hover .subTaskContents .subtask .fa {
   color: white; }

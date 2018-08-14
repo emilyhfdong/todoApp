@@ -7,16 +7,11 @@ import {
     CREATE_CATEGORY,
     CHANGE_CATEGORY,
     CHANGE_SUBTASK_STATUS,
-    CREATE_SUBTASK
+    CREATE_SUBTASK,
+    DELETE_SUBTASK
 } from "../actions/types";
 
 function generateRandomString() {
-  // const lettersAndNums = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
-  // var str = "";
-  // for (let i = 0; i < 6; i ++ ) {
-  //   str += lettersAndNums[Math.floor(Math.random() * (61))];
-  // }
-  // return str;
   return Date.now().toString()
 }
 
@@ -143,7 +138,6 @@ export default function(state = initialState, action) {
       updatedSubtask.status = action.payload.status
       selectedTodo.subtasks = sortArray(newSubtasks.concat(updatedSubtask), "id")
 
-
       const updatedList = sortArray(newTaskList.concat(selectedTodo), state.sortingMethod)
       return {
         ...state,
@@ -160,9 +154,21 @@ export default function(state = initialState, action) {
       taskList = sortArray(taskList.concat(parentTodo), state.sortingMethod)
       return {
         ...state,
-        // allTodos: taskList
+        allTodos: taskList
       }
     }
+    case DELETE_SUBTASK: {
+      let updatedTaskList = state.allTodos.filter(todo => todo.id !== action.payload.todoId)
+      const currentTodo = state.allTodos.filter(todo => todo.id === action.payload.todoId)[0]
+
+      currentTodo.subtasks = currentTodo.subtasks.filter(subtask => subtask.id !== action.payload.subtaskId)
+      updatedTaskList = sortArray(updatedTaskList.concat(currentTodo), state.sortingMethod)
+      return {
+        ...state,
+        allTodos: updatedTaskList
+      }
+    }
+
     default:
       return state;
   }

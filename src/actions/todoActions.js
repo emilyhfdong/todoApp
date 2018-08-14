@@ -7,7 +7,8 @@ import {
     CREATE_CATEGORY,
     CHANGE_CATEGORY,
     CHANGE_SUBTASK_STATUS,
-    CREATE_SUBTASK
+    CREATE_SUBTASK,
+    DELETE_SUBTASK
 } from "./types";
 
 export const postToDo = (todo) => dispatch => {
@@ -68,6 +69,13 @@ export const changeSubTaskStatus = (obj) => dispatch => {
 export const createSubtask = (obj) => dispatch => {
   dispatch ({
     type: CREATE_SUBTASK,
+    payload: obj
+  })
+}
+
+export const deleteSubtask = (obj) => dispatch => {
+  dispatch ({
+    type: DELETE_SUBTASK,
     payload: obj
   })
 }
